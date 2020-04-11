@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: postgres
+  password: password
+
+development:
+  <<: *default
+  database: scrape_hamrobazzar_development
+
+test:
+  <<: *default
+  database: scrape_hamrobazzar_test
+
+production:
+  <<: *default
+  database: scrape_hamrobazzar_production
+  username: scrape_hamrobazzar
+  password: <%= ENV['SCRAPE_HAMROBAZZAR_DATABASE_PASSWORD'] %>
