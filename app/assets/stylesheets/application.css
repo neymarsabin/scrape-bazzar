@@ -15,5 +15,20 @@
  */
 
 body {
-  background-color: #DDFFF7;
+  background-color: #C0C0C0;
+}
+
+.search-group {
+  margin-top: 10%;
+  margin-left: 25%;
+  width: 50%;
+  background-color: white;
+  padding: 40px;
+  border-radius: 30px;
+}
+
+.header {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
 }

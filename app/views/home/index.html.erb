@@ -1,0 +1,7 @@
+<div class="search-group">
+  <div class="header">Scrape Hamrobazzar</div>
+  <%= form_tag root_path, method: "get" do %>
+    <%= text_field_tag :url, params[:url] %>
+    <%= submit_tag "Submit URL", name: nil %>
+  <% end %>
+</div>
