@@ -1,0 +1,13 @@
+#+TITLE: Scrape Bazzar
+#+DATE: 2020:04:11
+#+AUTHOR: Sabin Nepal
+
+* Scrape Bazzar
+
+  A Rails application to scrape data off of product description page and store the information. Refreshs the data every week for each of the product. 
+
+* Requirements
+  - gem 'rails', '~> 6.0.2', '>= 6.0.2.2'
+  - ruby 2.6.4
+  - gem 'pg', '>= 0.18', '< 2.0'
+  
