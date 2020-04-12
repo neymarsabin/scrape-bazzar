@@ -1,6 +1,5 @@
 require 'open-uri'
 require 'mechanize'
-require 'pry-rails'
 
 module Scrape
   class Hamrobazzar
