@@ -1,6 +1,5 @@
 class UpdateProductWorker
   include Sidekiq::Worker
-  queue: 'update_products', retry: 2
 
   def perform(id)
     product = Product.find(id)
