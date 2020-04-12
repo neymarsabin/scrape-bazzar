@@ -1,5 +1,7 @@
 class Product < ApplicationRecord
 
+  after_save :product_updater
+
   validates :title, presence: true
   validates :url, presence: true
   validates :description, presence: true
@@ -10,8 +12,7 @@ class Product < ApplicationRecord
     product = find_by(url: url)
     return product if product
 
-    scrape_object = Scrape::Hamrobazzar.new(url)
-    scrape_object.get_info
+    scrape_object = scrape(url)
 
     product = create(
       url: scrape_object.url,
@@ -21,5 +22,17 @@ class Product < ApplicationRecord
       mobile_number: scrape_object.phone
     )
     return product
+  end
+
+  def self.scrape(url)
+    scrape_object = Scrape::Hamrobazzar.new(url)
+    scrape_object.get_info
+    scrape_object
+  end
+
+  private
+
+  def product_updater
+    UpdateProductWorker.perform_at(1.weeks.from_now, self.id)
   end
 end
