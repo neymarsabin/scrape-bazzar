@@ -1,7 +1,7 @@
 <div class="search-group">
   <div class="header">Scrape Hamrobazzar</div>
   <%= form_tag products_path, method: "post" do %>
-    <%= text_field_tag :url %>
-    <%= submit_tag "Submit URL", name: nil %>
+    <%= text_field_tag :url , id: "url-input" %>
   <% end %>
 </div>
+

@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  skip_before_action :verify_authenticity_token
 
   def index
     @products = Product.all
@@ -11,7 +12,7 @@ class ProductsController < ApplicationController
   def create
     url = product_params[:url]
     @product = Product.find_or_scrape(url)
-    redirect_to(@product)
+    render json: { data: @product }
   end
 
   private

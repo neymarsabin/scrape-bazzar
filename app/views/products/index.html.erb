@@ -1,7 +1,26 @@
+<%= javascript_pack_tag 'product_controls' %>
+
 <div class="search-group">
   <div class="header">Scrape Hamrobazzar</div>
-  <%= form_tag products_path, method: "post" do %>
-    <%= text_field_tag :url %>
-    <%= submit_tag "Submit URL", name: nil %>
-  <% end %>
+  <input
+    type="text"
+    id="url-input"
+    placeholder="Enter URL"
+    class="form-control form-control-lg"
+  />
+</div>
+
+<p id="loader"> </p>
+
+<div class="product" style="margin-left: 30%; border: 0px none;">
+  <div class="card" style="width: 18rem; border: none;">
+    <div class="card-body">
+      <h5 class="card-title" id="title"></h5>
+      <h6 class="card-subtitle mb-2 text-muted" id="price"></h6>
+      <p class="card-text" id="description"></p>
+      <p class="card-text" id="mobile_number"></p>
+      <p class="card-text" id="last_updated"></p>
+      <a href="" class="card-link"></a>
+    </div>
+  </div>
 </div>
