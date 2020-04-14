@@ -11,13 +11,11 @@ class Product < ApplicationRecord
   validates :description, presence: true
   validates :price, presence: true
 
-
-  def self.find_or_scrape(url)
-    product = find_by(url: url)
+  def self.find_or_save(url)
+    product = Product.find_by(url: url)
     return product if product
 
     scrape_object = scrape(url)
-
     create(
       url: scrape_object[:url],
       title: scrape_object[:title],

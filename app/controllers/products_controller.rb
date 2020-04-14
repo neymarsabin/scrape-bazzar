@@ -4,13 +4,11 @@ class ProductsController < ApplicationController
   def index
   end
 
-  def show
-  end
-
   def create
-    url = product_params[:url]
-    @product = Product.find_or_scrape(url)
-    render json: { data: @product }
+    product = Product.find_or_save(product_params[:url])
+    render json: { data: product }
+  rescue => e
+    render json: { error: "Error while scraping URL!!" }, status: 400
   end
 
   private
