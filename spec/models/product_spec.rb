@@ -27,4 +27,25 @@ RSpec.describe Product, :type => :model do
     it { should_not allow_value("https://hamrobazaar.com/i33453-.html").for(:url) }
   end
 
+
+  describe "find_or_save" do
+    let!(:product) { Product.create(url: "https://hamrobazaar.com/i2148426-sony-wf1000xm3.html",
+                                    title: "Sony",
+                                    description: "Sony",
+                                    mobile_number: '1234567890',
+                                    price: '26000'
+                                   )}
+
+    it "should return product if exists" do
+      p = Product.find_or_save("https://hamrobazaar.com/i2148426-sony-wf1000xm3.html")
+      expect(product.id).to eq(p.id)
+    end
+
+    it "should create new product if does not exist" do
+      url = "https://hamrobazaar.com/i2150144-tata-tipper.html"
+      title = "Tata Tipper"
+      p = Product.find_or_save(url)
+      expect(p.title).to eq(title)
+    end
+  end
 end
