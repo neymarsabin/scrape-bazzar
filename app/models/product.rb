@@ -1,9 +1,13 @@
 class Product < ApplicationRecord
 
+  URL_REGEX = /https:\/\/hamrobazaar\.com\/i\d+(-\w+)+\.html/
+
   after_save :product_updater
 
   validates :title, presence: true
-  validates :url, presence: true
+  validates :url, presence: true,
+            format: { with: URL_REGEX, message: "Only allow specific urls" },
+            uniqueness: true
   validates :description, presence: true
   validates :price, presence: true
 
@@ -30,6 +34,6 @@ class Product < ApplicationRecord
   private
 
   def product_updater
-    UpdateProductWorker.perform_at(1.weeks.from_now, self.id)
+    UpdateProductJob.set(wait: 1.week).perform_later(self.id)
   end
 end
