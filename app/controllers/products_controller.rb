@@ -2,11 +2,9 @@ class ProductsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    @products = Product.all
   end
 
   def show
-    @product = Product.find(params[:id])
   end
 
   def create
